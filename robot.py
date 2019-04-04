@@ -2,7 +2,7 @@ from time import sleep
 import traitlets
 from traitlets.config.configurable import SingletonConfigurable
 from adafruit_motorkit import MotorKit
-from motor import Motor
+from .motor import Motor
 
 sleep_time = 0.05
 
