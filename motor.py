@@ -41,8 +41,8 @@ class Motor(Configurable):
 
     def _write_value(self, value):
         """Sets motor value between [-1, 1]"""
-#        self._motor.throttle =self.set_min_max(value)
-        self._motor.throttle = value
+        self._motor.throttle =self.set_min_max(value)
+#        self._motor.throttle = value
 
     def _release(self):
         self._motor.throttle = 0
