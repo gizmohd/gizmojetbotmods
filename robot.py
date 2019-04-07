@@ -21,7 +21,7 @@ class Robot(SingletonConfigurable):
         super(Robot, self).__init__(*args, **kwargs)
         self.motor_driver = MotorKit(0x40)
         self.servo_driver = PCA9685(0x70)
-        self.setPWMFreq(50)
+        self.servo_driver.setPWMFreq(50)
         self.left_motor = Motor(self.motor_driver, channel=self.left_motor_channel, alpha=self.left_motor_alpha)
         self.right_motor = Motor(self.motor_driver, channel=self.right_motor_channel, alpha=self.right_motor_alpha)
 
