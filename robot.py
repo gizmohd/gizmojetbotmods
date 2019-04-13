@@ -3,7 +3,7 @@ import traitlets
 from traitlets.config.configurable import SingletonConfigurable
 from adafruit_motorkit import MotorKit
 from .motor import Motor
-from .PCA9685 import PCA9685
+#from .PCA9685 import PCA9685
 
 sleep_time = 0.05
 
@@ -20,13 +20,13 @@ class Robot(SingletonConfigurable):
     def __init__(self, *args, **kwargs):
         super(Robot, self).__init__(*args, **kwargs)
         self.motor_driver = MotorKit(0x40)
-        self.servo_driver = PCA9685(0x70)
-        self.servo_driver.setPWMFreq(50)
+#        self.servo_driver = PCA9685(0x70)
+#        self.servo_driver.setPWMFreq(50)
         self.left_motor = Motor(self.motor_driver, channel=self.left_motor_channel, alpha=self.left_motor_alpha)
         self.right_motor = Motor(self.motor_driver, channel=self.right_motor_channel, alpha=self.right_motor_alpha)
 
-    def set_servo(self, id, position):
-        self.servo_driver.setServoPulse(id, position)
+#    def set_servo(self, id, position):
+#        self.servo_driver.setServoPulse(id, position)
 
     def set_motors(self, left_speed, right_speed):
         self.left_motor.value = left_speed
