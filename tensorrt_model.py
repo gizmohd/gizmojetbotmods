@@ -1,7 +1,7 @@
 import torch
 import tensorrt as trt
 import atexit
-
+import os
 
 def torch_dtype_to_trt(dtype):
     if dtype == torch.int8:
@@ -54,6 +54,7 @@ class TRTModel(object):
         # load engine
         self.logger = trt.Logger()
         self.runtime = trt.Runtime(self.logger)
+        print(os.path.abspath(engine_path))
         with open(engine_path, 'rb') as f:
             self.engine = self.runtime.deserialize_cuda_engine(f.read())
         self.context = self.engine.create_execution_context()
