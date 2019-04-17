@@ -30,6 +30,10 @@ class Lights(object):
         for n in range(6):
             self._klights_min.append((n + self.lb_top_start + 2, n + self.lb_bottom_start + 2))
 
+    def lights_off(self):
+        self._lights = [(0, 0, 0)] * self._num_leds
+        self._client.put_pixels(self._lights)
+
     def set_left_headlight(self, color):
         print("Updating Lights (hl) {}".format(self.headlight_left))
         for l in self.headlight_left:
