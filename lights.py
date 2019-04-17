@@ -34,7 +34,7 @@ class Lights(object):
         self._lights = [(0, 0, 0)] * self._num_leds
         self._client.put_pixels(self._lights)
         time.sleep(0.05)
-	self._client.put_pixels(self._lights)
+        self._client.put_pixels(self._lights)
 
     def set_left_headlight(self, color):
         print("Updating Lights (hl) {}".format(self.headlight_left))
