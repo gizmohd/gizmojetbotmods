@@ -29,10 +29,12 @@ class Motor(Configurable):
            return 1
         elif (speed < -1):
            return -1
-        elif (speed > 0):
-           return  0.3 + (speed * .7)
         else:
-           return  -0.3 - (speed * .7)
+           return speed
+        #elif (speed > 0):
+        #   return  0.3 + (speed * .7)
+        #else:
+        #   return  -0.3 - (speed * .7)
 
 
     @traitlets.observe('value')
@@ -40,9 +42,24 @@ class Motor(Configurable):
         self._write_value(change['new'])
 
     def _write_value(self, value):
+        newval = 0
         """Sets motor value between [-1, 1]"""
-        self._motor.throttle =self.set_min_max(value)
-#        self._motor.throttle = value
+#        self._motor.throttle =self.set_min_max(value)
+        if (value > 0.01):
+            newval = value + 0.3
+        if (value < 0.01 and value > -0.01):
+            value = 0
+        elif (value < -0.01):
+            newval = value - 0.3
+        else:
+            newval = value
+
+        if (newval > 1):
+            newval = 1
+        elif (newval < -1):
+            newval = -1
+
+        self._motor.throttle = newval
 
     def _release(self):
         self._motor.throttle = 0
